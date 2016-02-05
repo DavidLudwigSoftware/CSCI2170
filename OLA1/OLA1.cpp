@@ -1,10 +1,10 @@
-/*
-
-Open Lab Assignment 1
-David Ludwig
-February 5, 2016
-
-*/
+// File:		ola1.cc
+// Due Date:	February 9, 2016
+// Author:		David Ludwig
+// Description: Determine the type of credit card from a data file of card numbers.
+// Course:		CSCI 2170 - 004
+// Input:		Data file of card numbers: "cardNumber.txt"
+// Output:		The card number along with the type of card
 
 // Includes
 #include <iostream>
@@ -31,7 +31,7 @@ bool validateAMEXCard(string number)
 bool validateDiscoverCard(string number)
 {
 	// Get the integer value after 622
-	int range = atoi(number.substr(3, 3).c_str());
+	int range = (number[3] - '0') * 100 + (number[4] - '0') * 10 + number[5] - '0';
 
 	// Check the prefix
 	if (number.substr(0, 4) == "6011" ||
@@ -52,11 +52,9 @@ bool validateDiscoverCard(string number)
 
 bool validateMasterCard(string number)
 {
-	// Get the prefix of the card as an integer
-	int prefix = atoi(number.substr(0, 2).c_str());
 
 	// Check if it is within the range
-	if (prefix >= 50 && prefix <= 55)
+	if (number[0] == '5' && number[1] - '0' < 6 && number[1] - '0' >= 0)
 
 		// It is a MasterCard
 		return true;
@@ -117,7 +115,7 @@ int main()
 	string   cardNumber = "";
 
 	// Open the card numbers file
-	cardNumbers.open("cardNumbers.txt");
+	cardNumbers.open("cardNumber.txt");
 	
 	// Prime read the first card number
 	cardNumbers >> cardNumber;
