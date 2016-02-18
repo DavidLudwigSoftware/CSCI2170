@@ -123,7 +123,6 @@ int calculateCheckDigit(string cardNumber)
 bool isValidCard(string cardNumber, int cardType)
 {
     // Declare the variables
-    string rev = "";
     int digit;
     int sum = 0;
 
@@ -150,7 +149,7 @@ bool isValidCard(string cardNumber, int cardType)
         digit = cardNumber[i] - '0';
 
         // Determine if the digit is in an odd position
-        if ((cardNumber.length() - 1 + i) & 1)
+        if (((cardNumber.length() - 2) - i + 1) & 1)
         {
             // Multiply the digit by 2 and subtract 9 if greater than 9
             digit = (digit * 2 > 9) ? digit * 2 - 9: digit * 2;
@@ -158,9 +157,6 @@ bool isValidCard(string cardNumber, int cardType)
 
         // Add the digit to the total
         sum += digit;
-
-        // Append the number
-        rev += cardNumber[i];
     }
 
     // Check if the sum and check digit add to a multiple of 10
