@@ -178,6 +178,8 @@ int main()
     string   cards[] = {"American Express card", "Discovercard", "MasterCard", "Visa Card"};
     int      card;
 
+
+
     // Open the card numbers file
     cardNumbers.open("cardNumber.txt");
 
